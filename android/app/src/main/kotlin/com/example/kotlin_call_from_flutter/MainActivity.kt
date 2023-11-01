@@ -16,11 +16,16 @@ class MainActivity: FlutterActivity() {
             if (call.method == "getRandom") {
                 val limit = call.argument("len") ?: 4
                 val prefix = call.argument("prefix") ?: ""
-                val rand = ('a'..'z')
-                    .shuffled()
-                    .take(limit)
-                    .joinToString(prefix = prefix, separator = "")
-                result.success(rand)
+                if(limit < 0) {
+                    result.error("INVALIDARGS", "String length should not be a negative integer", null)
+                }
+                else {
+                    val rand = ('a'..'z')
+                        .shuffled()
+                        .take(limit)
+                        .joinToString(prefix = prefix, separator = "")
+                    result.success(rand)
+                }
             } else {
                 result.notImplemented()
             }

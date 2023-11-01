@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:printing/printing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _generateRandomString() async {
     String random = '';
-    String printer = '';
     try {
       var arguments = {
         'len': 4,
@@ -41,8 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
       };
       random = await platform.invokeMethod('getRandom', arguments);
       print(random.characters);
-      // printer = (await Printing.listPrinters()) as String;
-      // print(printer);
 
     } on PlatformException catch (e) {
       random = '';

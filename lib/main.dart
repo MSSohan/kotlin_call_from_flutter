@@ -35,8 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
     String random = '';
     String printer = '';
     try {
-
-      random = await platform.invokeMethod('getRandom');
+      var arguments = {
+        'len': 5,
+        'prefix': 'fl_',
+      };
+      random = await platform.invokeMethod('getRandom', arguments);
       print(random.characters);
       // printer = (await Printing.listPrinters()) as String;
       // print(printer);

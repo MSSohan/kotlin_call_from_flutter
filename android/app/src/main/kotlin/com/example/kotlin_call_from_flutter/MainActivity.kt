@@ -14,7 +14,12 @@ class MainActivity: FlutterActivity() {
             "example.com/channel"
         ).setMethodCallHandler { call, result ->
             if (call.method == "getRandom") {
-                val rand = ('a'..'j').shuffled().take(4).joinToString("")
+                val limit = call.argument("len") ?: 4
+                val prefix = call.argument("prefix") ?: ""
+                val rand = ('a'..'z')
+                    .shuffled()
+                    .take(limit)
+                    .joinToString(prefix = prefix, separator = "")
                 result.success(rand)
             } else {
                 result.notImplemented()

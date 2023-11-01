@@ -30,14 +30,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _counter = '';
   static const platform = MethodChannel('example.com/channel');
+
   Future<void> _generateRandomString() async {
     String random = '';
     String printer = '';
     try {
+
       random = await platform.invokeMethod('getRandom');
-      print(random.runtimeType);
-      printer = (await Printing.listPrinters()) as String;
-      print(printer);
+      print(random.characters);
+      // printer = (await Printing.listPrinters()) as String;
+      // print(printer);
 
     } on PlatformException catch (e) {
       random = '';

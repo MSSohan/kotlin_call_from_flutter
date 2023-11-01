@@ -14,7 +14,7 @@ class MainActivity: FlutterActivity() {
             "example.com/channel"
         ).setMethodCallHandler { call, result ->
             if (call.method == "getRandom") {
-                val rand = ('f'..'j').shuffled().take(4).joinToString("")
+                val rand = ('a'..'j').shuffled().take(4).joinToString("")
                 result.success(rand)
             } else {
                 result.notImplemented()
